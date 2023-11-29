@@ -1,4 +1,48 @@
 <!doctype html>
-<title>Base Flask App Starting Page</title>
+<title>Solvent Boxes for Classical Molecular Dynamics</title>
 {% include 'styles/main_page_style.html' %}
-<p>Hello, World!</p>
+<hr>
+<p style="text-align: center; background-color:#ffffff;">
+<span style= "color: #000000;">Walker Research Group Webtools</span> &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; &nbsp; <a href="https://arwalkerlab.github.io/">Walker Research Group @ Wayne State University</a>
+</p>
+<hr>
+<h1 style="text-align: center;">Solvent Box Maker for Classical MD</h1>
+<p>This server is designed to help generate solvent boxes with custom molecules.  You may generate boxes of any size, but keep in mind larger boxes require more time to generate, while smaller boxes will produce more repetition in the orientation of the individual molecules.  It's a balance.</p>
+
+<hr>
+<form id="solvent-box-information" class="main-form" method=post enctype=multipart/form-data>
+
+<fieldset style="border-width:3px; border-style:solid; border-color:#000000; padding: 1em;">
+<legend>Solvent Box Information</legend>
+<div>
+    <label for="SystemDensity" style="width:200px"> Desired System Density </label>
+    <input type="number" id="SystemDensity" name="system_density" min="0" step="any" value=0.0 required style="width:100px">
+</div>  <!-- request.form.get("system_density") -->
+<div>
+    <label for="TleapBoxName" style="width:200px"> Box Name </label>
+    <input type="text" id="TleapBoxName" name="tleap_box_name" value="SOLVENTBOX" required style="width:100px">
+</div>  <!-- request.form.get("tleap_box_name") -->
+
+
+<div>
+</div>
+</fieldset>
+
+<fieldset style="border-width:3px; border-style:solid; border-color:#000000; padding: 1em;">
+<legend>Molecule Structure Information</legend>
+<!-- label for="var1" is the same as input id="var1", and flask's request.files['var2'] is input name='var2' -->
+    <div>
+    <label for="PDBid" style="width:200px"> Upload PDB </label>
+    <input type="file" id="PDBid" name="PDBfile" accept=".pdb" required style="width:300px">
+    </div> <!-- request.files["PDBfile"] -->
+    <div>
+    <label for="Mol2id" style="width:200px"> Upload MOL2 </label>
+    <input type="file" id="Mol2id" name="Mol2file" accept=".mol2" required style="width:300px">
+    </div> <!-- request.files["Mol2file"] -->
+    <div>
+    <label for="frcmodid" style="width:200px"> Upload FRCMOD </label>
+    <input type="file" id="frcmodid" name="FRCMODfile" accept=".frcmod" style="width:300px">
+    </div> <!-- request.files["FRCMODfile"] -->
+    <label for="NumberOfMolecules" style="width:200px"> Number of Molecules </label>
+    <input type="number" id="NumberOfMolecules" name="num_molecules" min="0" step="1" required style="width:100px">
+</fieldset>    

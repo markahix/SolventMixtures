@@ -14,4 +14,10 @@ app.config['TEMPLATES_AUTO_RELOAD'] = True
 ### Starting Page
 @app.route('/',methods=['GET', 'POST'])
 def start_page():
+    if request.method=="POST":
+        create_unique_job_folder(session)
+        secure_pdb_filename = secure_filename(request.files["PDBfile"])
+        secure_mol2_filename = secure_filename(request.files["Mol2file"])
+        
+        # Do the stuff in the job submission process.
     return render_template("main.html")
